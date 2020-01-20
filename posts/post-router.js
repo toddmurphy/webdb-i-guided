@@ -3,6 +3,7 @@ const {
   getAllPosts,
   getPostById,
   insertNewPost,
+  replacePostById,
 } = require('./post-model');
 const router = express.Router();
 
@@ -34,8 +35,15 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', (req, res) => {
-
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, contents } = req.body;
+  try {
+    const stuff = await replacePostById({ id, title, contents })
+    res.json(stuff)
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 router.delete('/:id', (req, res) => {
