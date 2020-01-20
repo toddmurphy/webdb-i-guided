@@ -20,8 +20,14 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', (req, res) => {
-
+router.post('/', async (req, res) => {
+  try {
+    const { title, contents } = req.body;
+    const stuff = await insertNewPost({ title, contents })
+    res.json({ message: '' })
+  } catch (e) {
+    
+  }
 });
 
 router.put('/:id', (req, res) => {
