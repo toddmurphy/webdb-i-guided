@@ -4,6 +4,7 @@ const {
   getPostById,
   insertNewPost,
   replacePostById,
+  deletePostById,
 } = require('./post-model');
 const router = express.Router();
 
@@ -39,15 +40,22 @@ router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { title, contents } = req.body;
   try {
-    const stuff = await replacePostById({ id, title, contents })
-    res.json(stuff)
+    const count = await replacePostById({ id, title, contents })
+    res.json({ message: `${count} posts got updated`})
   } catch (e) {
     console.log(e);
   }
 });
 
-router.delete('/:id', (req, res) => {
-
+router.delete('/:id', async (req, res) => {
+  try {
+    const count = await deletePostById(req.params.id)
+    res.json({
+      message: `${count} posts got deleted`
+    })
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 module.exports = router;
