@@ -8,7 +8,8 @@ function getAllPosts() {
 }
 
 function getPostById(id) {
-
+  // SELECT * FROM posts WHERE id = id
+  return db('posts').where({ id })
 }
 
 module.exports = {

@@ -11,8 +11,13 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', validateId, (req, res) => {
-
+router.get('/:id', async (req, res) => {
+  try {
+    const thePostIWant = await getPostById(req.params.id)
+    res.json(thePostIWant)
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 router.post('/', (req, res) => {
