@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', checkId, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const thePostIWant = await getPostById(req.params.id)
     res.json(thePostIWant)
