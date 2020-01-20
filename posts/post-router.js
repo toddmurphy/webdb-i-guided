@@ -5,12 +5,13 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     const allPosts = await getAllPosts()
+    res.json(allPosts)
   } catch (e) {
     console.log(e);
   }
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', validateId, (req, res) => {
 
 });
 
