@@ -1,5 +1,9 @@
 const express = require('express');
-const { getAllPosts, getPostById } = require('./post-model');
+const {
+  getAllPosts,
+  getPostById,
+  insertNewPost,
+} = require('./post-model');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -23,10 +27,10 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const { title, contents } = req.body;
-    const stuff = await insertNewPost({ title, contents })
-    res.json({ message: '' })
+    const id = await insertNewPost({ title, contents })
+    res.json({ message: `new post with id ${id} was created` })
   } catch (e) {
-    
+    console.log(e);
   }
 });
 

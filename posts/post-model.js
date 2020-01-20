@@ -14,7 +14,14 @@ function getPostById(id) {
   return db('posts').where({ id }).first()
 }
 
+function insertNewPost({ title, contents }) {
+  // INSERT INTO posts (title, contents)
+  // VALUES (title, contents)
+  return db('posts').insert({ title, contents })
+}
+
 module.exports = {
   getAllPosts,
   getPostById,
+  insertNewPost,
 }
