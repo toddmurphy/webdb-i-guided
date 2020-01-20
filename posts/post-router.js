@@ -2,8 +2,12 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-
+router.get('/', async (req, res) => {
+  try {
+    const allPosts = await getAllPosts()
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 router.get('/:id', (req, res) => {
